@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Barbie Night ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9ec7 0%, #ff6bb5 50%, #c44569 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .convite {
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            border: 4px solid #ff69b4;
+            animation: flutuar 3s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .coroa {
+            font-size: 50px;
+            margin-bottom: 10px;
+            animation: brilhar 2s ease-in-out infinite;
+        }
+
+        @keyframes brilhar {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #e91e63;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px #ffc1e3;
+        }
+
+        .filme {
+            background: #ffe4f1;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px dashed #ff69b4;
+        }
+
+        .filme h2 {
+            color: #c2185b;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .filme p {
+            color: #ad1457;
+            font-size: 0.9rem;
+        }
+
+        .info {
+            text-align: left;
+            margin: 25px 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .info-item span {
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+
+        .info-item strong {
+            color: #e91e63;
+        }
+
+        #data, #hora, #local {
+            cursor: pointer;
+            border-bottom: 2px dotted #ff69b4;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff6bb5, #e91e63);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0px);
+        }
+
+        .resposta {
+            margin-top: 20px;
+            font-weight: 600;
+            color: #c2185b;
+            min-height: 25px;
+            font-size: 1.1rem;
+        }
+
+        .coracoes {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: subir 4s linear infinite;
+        }
+
+        @keyframes subir {
+            0% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-300px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="convite">
+        <div class="coroa">👑</div>
+        <h1>Convite Especial</h1>
+        <p>e vai recusar é? </p>
+        
+        <div class="filme">
+            <h2>Barbie: A Princesa e a Plebeia</h2>
+            <p>Vamos assistir e depois dormir a noite toda (confia) ✨</p>
+        </div>
+
+        <div class="info">
+            <div class="info-item">
+                <span>📅</span>
+                <div><strong>Data:</strong> <span id="data">Domingo, 24/05/2026</span></div>
+            </div>
+            <div class="info-item">
+                <span>⏰</span>
+                <div><strong>Hora:</strong> <span id="hora">19h00</span></div>
+            </div>
+            <div class="info-item">
+                <span>📍</span>
+                <div><strong>Local:</strong> <span id="local">Na minha casa</span></div>
+            </div>
+            <div class="info-item">
+                <span>🍿</span>
+                <div><strong>Teremos:</strong> só agua para beber </div>
+            </div>
+        </div>
+
+        <button onclick="confirmarPresenca()">Vou simmmmm !</button>
+        <button onclick="naoVou()" style="background: #999; margin-left: 10px;">Não posso :(</button>
+        
+        <div class="resposta" id="resposta"></div>
+    </div>
+
+    <script>
+        // Troca os dados aqui fácil
+        const dadosConvite = {
+            data: "Sábado, 24/05/2026",
+            hora: "19h00", 
+            local: "Na minha casa - Rua das Bonecas, 123"
+        };
+
+        // Atualiza os campos clicáveis
+        document.getElementById('data').onclick = () => {
+            const novaData = prompt("Qual a nova data?", dadosConvite.data);
+            if(novaData) {
+                dadosConvite.data = novaData;
+                document.getElementById('data').textContent = novaData;
+            }
+        };
+
+        document.getElementById('hora').onclick = () => {
+            const novaHora = prompt("Qual o novo horário?", dadosConvite.hora);
+            if(novaHora) {
+                dadosConvite.hora = novaHora;
+                document.getElementById('hora').textContent = novaHora;
+            }
+        };
+
+        document.getElementById('local').onclick = () => {
+            const novoLocal = prompt("Qual o novo local?", dadosConvite.local);
+            if(novoLocal) {
+                dadosConvite.local = novoLocal;
+                document.getElementById('local').textContent = novoLocal;
+            }
+        };
+
+        function confirmarPresenca() {
+            document.getElementById('resposta').textContent = "se vc fosse recusar eu te matava neguin";
+            soltarCoracoes();
+        }
+
+        function naoVou() {
+            document.getElementById('resposta').textContent = "vou te matar nickolas KAKKQAKAKKAKAK";
+             soltarCaveiras();
+        }
+
+        function soltarCoracoes() {
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const coracao = document.createElement('div');
+                    coracao.classList.add('coracoes');
+                    coracao.textContent = '💖';
+                    coracao.style.left = Math.random() * 100 + '%';
+                    coracao.style.animationDelay = Math.random() * 2 + 's';
+                    document.querySelector('.convite').appendChild(coracao);
+                    
+                    setTimeout(() => coracao.remove(), 4000);
+                }, i * 200);
+            }
+        }
+        function soltarCaveiras() {
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const caveira = document.createElement('div');
+                    caveira.classList.add('caveira');
+                    caveira.textContent = '☠️ ';
+                    caveira.style.left = Math.random() * 100 + '%';
+                    caveira.style.animationDelay = Math.random() * 2 + 's';
+                    document.querySelector('.convite').appendChild(caveira);
+                    
+                    setTimeout(() => caveira.remove(), 4000);
+                }, i * 200);
+            }
+        }
+    </script>
+</body>
+</html>
